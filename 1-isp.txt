@@ -1,5 +1,6 @@
 hostnamectl set-hostname isp
 timedatectl set-timezone Europe/Moscow
+exec bash (применить изменение имени)
 
 # Настройка NAT
 # -s адреса ens4 ens5 т.е. роутеры
