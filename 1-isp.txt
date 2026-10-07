@@ -15,7 +15,7 @@ systemctl start --now iptables.service
 
 # доп проверка ISP
 hostname
-timedatectl | grep "Time zone"
+timedatectl | grep "Time zone" (не работает?)
 ip -br a
 iptables -t nat -L POSTROUTING -n -v
 
