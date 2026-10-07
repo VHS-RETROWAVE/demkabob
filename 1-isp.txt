@@ -13,13 +13,13 @@ iptables-save > /etc/sysconfig/iptables
 # запустить iptables
 systemctl start --now iptables.service
 
-# доп проверка ISP
+# доп проверка ISP (Времязатратно)
 hostname
 timedatectl | grep "Time zone" (не работает?)
 ip -br a /// ip -c a
 iptables -t nat -L POSTROUTING -n -v
 
-# проверка роутеров
+# проверка роутеров (Времязатрано)
 ДЛЯ HQ-RTR - ping 172.16.1.2
 ДЛЯ BR-RTR - ping 172.16.2.2
 
