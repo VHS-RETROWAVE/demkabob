@@ -19,7 +19,10 @@ HOSTNAME=br-srv.au-team.irpo
 # если строка HOSTNAME= уже есть - исправить, если нет - добавить
 # ^^^^^^^^^^ КОНЕЦ MCEDIT: F2 сохранить, F10 выйти ^^^^^^^^^^
 
-# ---------- 2. SSH баннер ----------
+# ---------- 2. Адресация -----------
+lorum ipsum
+
+# ---------- 3. SSH баннер ----------
 echo 'Banner /etc/openssh/banner' | sudo tee -a /etc/openssh/sshd_config
 echo "Authorized access only" | sudo tee /etc/openssh/banner
 sudo systemctl restart sshd
