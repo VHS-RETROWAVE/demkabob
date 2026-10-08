@@ -3,6 +3,7 @@ login user
 pass resu
 ---login root
 ---pass toor
+### Лучше клиент вообще не трогать на самом деле. Ваш приоритет это доступ к FW, а дальше пихуй
 
  <img width="534" height="245" alt="image" src="https://github.com/user-attachments/assets/533105cf-b219-4fbe-be35-452e024d8f43" />
 
