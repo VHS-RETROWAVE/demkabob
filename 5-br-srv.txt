@@ -11,7 +11,7 @@
 #   - mcedit: F2 - сохранить, F10 - выход
 
 # ---------- 1. Имя хоста ----------
-sudo hostnamectl set-hostname br-srv.au-team.irpo
+hostnamectl set-hostname br-srv.au-team.irpo
 
 sudo mcedit /etc/sysconfig/network
 # vvvvvvvvvv В MCEDIT (вписываем в файл) vvvvvvvvvv
