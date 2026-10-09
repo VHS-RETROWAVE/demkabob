@@ -1,0 +1,6 @@
+# Все что от вас требуется здесь это просто выставить hostname
+
+hostnamectl set-hostname hq-sw.au-team.irpo 
+mcedit /etc/sysconfig/network
+  
+HOSTNAME=hq-sw.au-team.irpo
