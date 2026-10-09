@@ -59,7 +59,7 @@ docker    IN  A   172.16.1.1
 # ^^^^^^^^^^ КОНЕЦ MCEDIT: F2 сохранить, F10 выйти ^^^^^^^^^^
  
 # ---------- 6. SSH баннер ----------
-echo 'Banner /etc/openssh/banner' >> /etc/openssh/sshd_config
+echo "Banner /etc/openssh/banner" >> /etc/openssh/sshd_config
 echo "Authorized access only" > /etc/openssh/banner
 systemctl restart sshd
  
