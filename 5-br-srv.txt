@@ -2,13 +2,6 @@
 # Вход под пользователем sshuser (пароль P@ssw0rd), все команды через sudo
 # С HQ-SRV можно зайти так: ssh sshuser@10.20.20.2
 # Если порт SSH менялся - ssh -p <порт> sshuser@10.20.20.2
-#
-# КАК ЧИТАТЬ ФАЙЛ:
-#   - Обычные строки без # вне рамок - команды для ТЕРМИНАЛА
-#   - Всё между строками "vvvv В MCEDIT" и "^^^^ КОНЕЦ MCEDIT" - это то,
-#     что делается ВНУТРИ редактора: строки без # вписываются в файл
-#     (без пробелов в начале строки!), строки с # - подсказки, их не вписывать
-#   - mcedit: F2 - сохранить, F10 - выход
 
 # ---------- 1. Имя хоста ----------
 hostnamectl set-hostname br-srv.au-team.irpo
@@ -23,11 +16,11 @@ HOSTNAME=br-srv.au-team.irpo
 echo "10.20.20.2/28" > /etc/net/ifaces/ens3/ipv4address 
 echo "default via 10.20.20.1" > /etc/net/ifaces/ens3/ipv4route   
 echo "nameserver 10.10.100.2" > /etc/net/ifaces/ens3/resolv.conf
-echo "nameserver 77.88.8.8" > /etc/net/ifaces/ens3/resolv.conf
+echo "nameserver 77.88.8.8" > /etc/net/ifaces/ens3/resolv.conf     <- Возможно не надо (TBD)
 systemctl restart network
 
 # ---------- 3. SSH баннер ----------
-echo 'Banner /etc/openssh/banner' | sudo tee -a /etc/openssh/sshd_config
+echo "Banner /etc/openssh/banner" | sudo tee -a /etc/openssh/sshd_config
 echo "Authorized access only" | sudo tee /etc/openssh/banner
 sudo systemctl restart sshd
 
