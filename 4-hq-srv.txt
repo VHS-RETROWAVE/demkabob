@@ -21,7 +21,7 @@ EOF
  
 systemctl restart network
  
-# ---------- 3. BIND: options.conf ----------
+# ---------- 3. Фикс ошибок в options.conf ----------
 mcedit /etc/bind/options.conf
 # vvvvvvvvvv В MCEDIT (вписываем в файл) vvvvvvvvvv
 # Внутри блока options { ... }; раскомментировать / исправить строки так:
@@ -35,7 +35,7 @@ allow-recursion { any; };
 # если строк allow-query-cache и allow-recursion нет - добавить их внутрь options { }
 # ^^^^^^^^^^ КОНЕЦ MCEDIT: F2 сохранить, F10 выйти ^^^^^^^^^^
  
-# ---------- 4. BIND: обратные зоны (в файлах специально сделаны ошибки) ----------
+# ---------- 4. обратные зоны (в файлах специально сделаны ошибки) ----------
 mcedit /etc/bind/zone/10.10.in-addr.arpa
 # vvvvvvvvvv В MCEDIT (вписываем в файл) vvvvvvvvvv
 # F4 (замена): itpo -> irpo (заменить ВСЕ)
@@ -50,7 +50,7 @@ mcedit /etc/bind/zone/16.172.in-addr.arpa
 @       IN      SOA     hq-rtr.au-team.irpo. root.au-team.irpo. (
 # ^^^^^^^^^^ КОНЕЦ MCEDIT: F2 сохранить, F10 выйти ^^^^^^^^^^
  
-# ---------- 5. BIND: прямая зона (web и docker перепутаны) ----------
+# ---------- 5. прямая зона (web и docker перепутаны) ----------
 mcedit /etc/bind/zone/au-team.irpo.zone
 # vvvvvvvvvv В MCEDIT (вписываем в файл) vvvvvvvvvv
 # Записи должны быть такими:
