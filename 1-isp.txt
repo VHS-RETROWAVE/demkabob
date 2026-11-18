@@ -2,7 +2,7 @@ hostnamectl set-hostname isp
 
 mcedit /etc/sysconfig/network
 # vvvvvvvvvv В MCEDIT (вписываем в файл) vvvvvvvvvv
-HOSTNAME=isp.au-team.irpo
+HOSTNAME=isp
 # если строка HOSTNAME= уже есть - исправить, если нет - добавить
 # ^^^^^^^^^^ КОНЕЦ MCEDIT: F2 сохранить, F10 выйти ^^^^^^^^^^
 
