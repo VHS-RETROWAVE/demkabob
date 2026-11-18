@@ -58,6 +58,11 @@ ip nat source dynamic inside-to-outside pool VLAN10 overload interface isp
 ip nat source dynamic inside-to-outside pool VLAN20 overload interface isp
 ip nat source dynamic inside-to-outside pool RTR-FW overload interface isp <- Название возможно зависит от варианта в задании
 
+# Добавление пользователя net_admin
+username net_admin
+password P@ssw0rd
+role admin
+
 ### НЕ ЗАБУДЬТЕ СОХРАНИТЬ ВСЕ В ПАМЯТЬ РОУТЕРА ИНАЧЕ ВАМ ПИЗДА!!! ###
 end
 write memory
