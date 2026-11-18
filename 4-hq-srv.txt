@@ -64,6 +64,9 @@ named-checkzone au-team.irpo /etc/bind/zone/au-team.irpo.zone
 named-checkzone 10.10.in-addr.arpa /etc/bind/zone/10.10.in-addr.arpa
 named-checkzone 16.172.in-addr.arpa /etc/bind/zone/16.172.in-addr.arpa
 
+systemctl enable --now bind.service
+systemctl restart bind.service
+
 # ---------- 7. Добавление sshuser ----------
 useradd -u 2027 -m sshuser
 passwd sshuser
@@ -85,9 +88,6 @@ Banner /etc/openssh/banner
 
 echo "Authorized access only" > /etc/openssh/banner
 systemctl restart sshd
- 
-systemctl enable --now bind.service
-systemctl restart bind.service
  
 # ---------- 9. Проверка DNS ----------
 dig @10.10.100.2 hq-srv.au-team.irpo +short
