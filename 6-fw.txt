@@ -11,7 +11,10 @@ network 10.20.10.0/30 area 0
 network 10.20.20.0/28 area 0
 exit
 
-interface oif0 (интерфейс в сторону br-rtr)
+interface oif0
+no ip ospf passive
+
+interface iif0
 ip ospf passive
 
 ip ospf authentication message-digest
