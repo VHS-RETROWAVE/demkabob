@@ -10,12 +10,12 @@
                          Net
                           |
                        [ ISP ]
-                  ens4 /     \\ ens5
-                      /       \\
+                  ens4 /      \ ens5
+                      /        \
                  [HQ-RTR] ═GRE═ [BR-RTR]
                      |             |
                   [HQ-SW]       [BR-FW]
-                  /     \\          |
+                  /     \          |
             HQ-SRV     HQ-CLI   BR-SRV
 ```
 
