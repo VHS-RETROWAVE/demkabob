@@ -25,6 +25,8 @@ mcedit /etc/openssh/sshd_config
 Port 2027
 # Под logging:
 AllowUsers sshuser
+# В Banner
+Banner /etc/openssh/banner
 # ^^^^^^^^^^ КОНЕЦ MCEDIT: F2 сохранить, F10 выйти ^^^^^^^^^^
 echo "Authorized access only" > /etc/openssh/banner
 systemctl restart sshd
