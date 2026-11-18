@@ -5,13 +5,15 @@ IdecoP@ssw0rd
 1           <- Консольный режим
 hostnamectl set-hostname br-fw.au-team.irpo;exec bash
 configure terminal
-router ospf     (1?)
+router ospf 1
 ospf router-id 10.10.10.3
 network 10.20.10.0/30 area 0
 network 10.20.20.0/28 area 0
 exit
-interface (интерфейс в сторону br-rtr) oif0
-no ip ospf passive
+
+interface oif0 (интерфейс в сторону br-rtr)
+ip ospf passive
+
 ip ospf authentication message-digest
 ip ospf message-digest-key 1 md5 P@ssw0rd
 interface (интерфейс в сторону br-srv) iif0
