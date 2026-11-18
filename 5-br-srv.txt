@@ -19,15 +19,25 @@ echo "nameserver 10.10.100.2" > /etc/net/ifaces/ens3/resolv.conf
 echo "nameserver 77.88.8.8" >> /etc/net/ifaces/ens3/resolv.conf
 systemctl restart network
 
-# ---------- 3. SSH баннер ----------
+# ---------- 3. Добавление sshuser ----------
+useradd -u 2027 -m sshuser
+passwd sshuser
+P@ssw0rd (Два раза)
+usermod -aG wheel sshuser
+# (Создать файл правил sudo:)
+visudo -f /etc/sudoers.d/sshuser
+# В редакторе:
+sshuser ALL=(ALL) NOPASSWD: ALL
+
+# ---------- 4. Настройка SSH ----------
 mcedit /etc/openssh/sshd_config
-# vvvvvvvvvv В MCEDIT (вписываем в файл) vvvvvvvvvv
+# vvvvvvvvvv В MCEDIT (вписываем в файл в свои строки) vvvvvvvvvv
 Port 2027
-# Под logging:
 AllowUsers sshuser
-# В Banner
+MaxAuthTries 2
 Banner /etc/openssh/banner
 # ^^^^^^^^^^ КОНЕЦ MCEDIT: F2 сохранить, F10 выйти ^^^^^^^^^^
+
 echo "Authorized access only" > /etc/openssh/banner
 systemctl restart sshd
 
