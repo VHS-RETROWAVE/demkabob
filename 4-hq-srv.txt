@@ -1,14 +1,12 @@
 # ===== HQ-SRV =====
 # Все команды выполняются от root
- 
+# MCEDIT: F2 сохранить, F10 выйти
 # ---------- 1. Имя хоста ----------
 hostnamectl set-hostname hq-srv.au-team.irpo
  
 mcedit /etc/sysconfig/network
-# vvvvvvvvvv В MCEDIT (вписываем в файл) vvvvvvvvvv
 HOSTNAME=hq-srv.au-team.irpo
 # если строка HOSTNAME= уже есть - исправить, если нет - добавить
-# ^^^^^^^^^^ КОНЕЦ MCEDIT: F2 сохранить, F10 выйти ^^^^^^^^^^
  
 # ---------- 2. Сеть (интерфейс ens3) ----------
 echo "10.10.100.2/27" > /etc/net/ifaces/ens3/ipv4address
@@ -23,7 +21,6 @@ systemctl restart network
  
 # ---------- 3. Фикс ошибок в options.conf ----------
 mcedit /etc/bind/options.conf
-# vvvvvvvvvv В MCEDIT (вписываем в файл) vvvvvvvvvv
 # Внутри блока options { ... }; раскомментировать / исправить строки так:
 listen-on { 127.0.0.1; 10.10.100.2; };
 listen-on-v6 { none; };
@@ -33,30 +30,23 @@ allow-query { any; };
 allow-query-cache { any; };
 allow-recursion { any; };
 # если строк allow-query-cache и allow-recursion нет - добавить их внутрь options { }
-# ^^^^^^^^^^ КОНЕЦ MCEDIT: F2 сохранить, F10 выйти ^^^^^^^^^^
  
 # ---------- 4. обратные зоны (в файлах специально сделаны ошибки) ----------
 mcedit /etc/bind/zone/10.10.in-addr.arpa
-# vvvvvvvvvv В MCEDIT (вписываем в файл) vvvvvvvvvv
 # F4 (замена): itpo -> irpo (заменить ВСЕ)
 # Первая строка SOA должна выглядеть так:
 @       IN      SOA     hq-rtr.au-team.irpo. root.au-team.irpo. (
-# ^^^^^^^^^^ КОНЕЦ MCEDIT: F2 сохранить, F10 выйти ^^^^^^^^^^
  
 mcedit /etc/bind/zone/16.172.in-addr.arpa
-# vvvvvvvvvv В MCEDIT (вписываем в файл) vvvvvvvvvv
 # F4 (замена): itpo -> irpo (заменить ВСЕ)
 # Первая строка SOA должна выглядеть так:
 @       IN      SOA     hq-rtr.au-team.irpo. root.au-team.irpo. (
-# ^^^^^^^^^^ КОНЕЦ MCEDIT: F2 сохранить, F10 выйти ^^^^^^^^^^
  
 # ---------- 5. прямая зона (web и docker перепутаны) ----------
 mcedit /etc/bind/zone/au-team.irpo.zone
-# vvvvvvvvvv В MCEDIT (вписываем в файл) vvvvvvvvvv
 # Записи должны быть такими:
 web       IN  A   172.16.2.1
 docker    IN  A   172.16.1.1
-# ^^^^^^^^^^ КОНЕЦ MCEDIT: F2 сохранить, F10 выйти ^^^^^^^^^^
  
 # ---------- 6. SSH баннер ----------
 echo "Banner /etc/openssh/banner" >> /etc/openssh/sshd_config
