@@ -60,6 +60,11 @@ ip nat source dynamic inside-to-outside pool VLAN100 overload interface isp
 ip nat source dynamic inside-to-outside pool VLAN200 overload interface isp
 ip nat source dynamic inside-to-outside pool VLAN999 overload interface isp
 
+# Добавление пользователя net_admin
+username net_admin
+password P@ssw0rd
+role admin
+
 ### НЕ ЗАБУДЬТЕ СОХРАНИТЬ ВСЕ В ПАМЯТЬ РОУТЕРА ИНАЧЕ ВАМ ПИЗДА!!! ###
 end
 write memory
