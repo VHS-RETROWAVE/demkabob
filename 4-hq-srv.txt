@@ -57,22 +57,39 @@ mcedit /etc/bind/zone/au-team.irpo.zone
 web       IN  A   172.16.2.1
 docker    IN  A   172.16.1.1
 # ^^^^^^^^^^ КОНЕЦ MCEDIT: F2 сохранить, F10 выйти ^^^^^^^^^^
- 
-# ---------- 6. SSH баннер ----------
-echo "Banner /etc/openssh/banner" >> /etc/openssh/sshd_config
-echo "Authorized access only" > /etc/openssh/banner
-systemctl restart sshd
- 
-# ---------- 7. Проверка синтаксиса и запуск BIND ----------
+
+# ---------- 6. Проверка синтаксиса и запуск BIND ----------
 named-checkconf
 named-checkzone au-team.irpo /etc/bind/zone/au-team.irpo.zone
 named-checkzone 10.10.in-addr.arpa /etc/bind/zone/10.10.in-addr.arpa
 named-checkzone 16.172.in-addr.arpa /etc/bind/zone/16.172.in-addr.arpa
+
+# ---------- 7. Добавление sshuser ----------
+useradd -u 2027 -m sshuser
+passwd sshuser
+P@ssw0rd (Два раза)
+usermod -aG wheel sshuser
+# (Создать файл правил sudo:)
+visudo -f /etc/sudoers.d/sshuser
+# В редакторе:
+sshuser ALL=(ALL) NOPASSWD: ALL
+ 
+# ---------- 8. Настройка SSH ----------
+mcedit /etc/openssh/sshd_config
+# vvvvvvvvvv В MCEDIT (вписываем в файл в свои строки) vvvvvvvvvv
+Port 2027
+AllowUsers sshuser
+MaxAuthTries 2
+Banner /etc/openssh/banner
+# ^^^^^^^^^^ КОНЕЦ MCEDIT: F2 сохранить, F10 выйти ^^^^^^^^^^
+
+echo "Authorized access only" > /etc/openssh/banner
+systemctl restart sshd
  
 systemctl enable --now bind.service
 systemctl restart bind.service
  
-# ---------- 8. Проверка DNS ----------
+# ---------- 9. Проверка DNS ----------
 dig @10.10.100.2 hq-srv.au-team.irpo +short
 dig @10.10.100.2 hq-cli.au-team.irpo +short
 dig @10.10.100.2 br-srv.au-team.irpo +short
